@@ -1,6 +1,4 @@
-const config = require('../config/config');
 const User = require('../models/user.model');
-const jwt = require('jsonwebtoken');
 const authCtrl = {};
 
 authCtrl.register = (req, res, next) => {

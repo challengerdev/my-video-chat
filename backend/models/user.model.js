@@ -1,7 +1,6 @@
 const {compareSync, hashSync} = require('bcrypt-nodejs');
 const {Schema, model} = require('mongoose');
 const jwt = require('jsonwebtoken');
-const config = require('../config/config');
 
 const UserSchema = new Schema(
     {
@@ -83,9 +82,9 @@ UserSchema.methods = {
             {
                 _id: this._id,
             },
-            config.JWT_SECRET,
+            process.env.JWT_SECRET,
             {
-                expiresIn: '2ms'
+                expiresIn: process.env.EXPIRESIN
             }
         );
     },

@@ -1,4 +1,3 @@
-const config = require('./config');
 const express = require('express');
 const morgan = require('morgan');
 const compress = require('compression');
@@ -13,11 +12,11 @@ const path = require('path');
 module.exports = function () {
     var app = express();
 
-    // if (process.env.NODE_DEV === 'development') {
+    if (process.env.NODE_ENV === 'development') {
         app.use(morgan('dev'));
-    // } else if (process.env.NODE_DEV === 'production') {
-    //     app.use(compress());
-    // }
+    } else if (process.env.NODE_ENV === 'production') {
+        app.use(compress());
+    }
 
     app.use(bodyParser.urlencoded({
         extended: true
@@ -30,7 +29,7 @@ module.exports = function () {
     app.use(helmet());
     app.use(cors());
 
-    app.use('/api', ApiRoutes);
+    app.use(`/${process.env.API}`, ApiRoutes);
 
     // require('../app/routes/index.routes.js') (app);
     // require('../app/routes/users.routes.js') (app);
