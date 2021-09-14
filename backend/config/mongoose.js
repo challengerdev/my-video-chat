@@ -21,7 +21,7 @@ module.exports = function() {
         throw e;
       });
 
-    require('../models/user.models');
+    require('../models/user.model');
 
     return db;
 };
