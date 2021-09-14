@@ -2,7 +2,7 @@
  * API Routes
  */
  
-const v1Routes = require('./v1');
+const v1Routes = require(`./${process.env.VERSION}`);
 const express = require('express');
 const router = express.Router();
 
@@ -12,6 +12,6 @@ router.get('/status', (req, res) => { res.send({status: 'OK'}) }) // api status
 //     res.sendFile(__dirname + '/static/index.html');
 // })
 
-router.use('/v1', v1Routes);
+router.use(`/${process.env.VERSION}`, v1Routes);
 
 module.exports = router;

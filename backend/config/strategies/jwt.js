@@ -1,6 +1,5 @@
 const passport = require('passport');
 const User = require('mongoose').model('User');
-const config = require('../config');
 
 const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
@@ -12,7 +11,7 @@ const jwtOpts = {
     // Telling Passport to check authorization headers for JWT
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     // Telling Passport where to find the secret
-    secretOrKey: config.JWT_SECRET,
+    secretOrKey: process.env.JWT_SECRET,
 };
 
 module.exports = function() {
